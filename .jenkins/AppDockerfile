@@ -1,15 +1,15 @@
 FROM debian:buster-slim as app
-LABEL maintainer "Automata Team"
+LABEL maintainer "Secretum Inc"
 
-COPY ./automata /usr/local/bin/automata
+COPY ./firmus /usr/local/bin/firmus
 
-RUN	useradd -m -u 1000 -U -s /bin/sh -d /automata automata && \
-	mkdir -p /automata/.local/share/automata && \
-	chown -R automata:automata /automata/.local && \
-	ln -s /automata/.local/share/automata /data
+RUN	useradd -m -u 1000 -U -s /bin/sh -d /firmus firmus && \
+	mkdir -p /firmus/.local/share/firmus && \
+	chown -R firmus:firmus /firmus/.local && \
+	ln -s /firmus/.local/share/firmus /data
 
-USER automata
+USER firmus
 EXPOSE 30333 9933 9944
 VOLUME ["/data"]
 
-ENTRYPOINT ["/usr/local/bin/automata"]
+ENTRYPOINT ["/usr/local/bin/firmus"]
